@@ -123,4 +123,66 @@ body {
 .ludoBox{
   border: 1px solid #11111142;
   position: relative;
+   display: flex; /* Or grid */
+  align-items: center;
+  justify-content: center;
+}
+.ludoBox .fa-location-pin{
+  position: absolute;
+  margin: 2px;
+  font-size: 2rem;
+  transform: translate(0,-40%);
+  -webkit-text-stroke-width: 2px;
+  z-index: 100;
+  animation: animateMyI .08s linear;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+.ludobox .fa-star{
+  position: absolute;
+  color: #222;
+  opacity: .6;
+}
+@keyframes aniimateMyI{
+  0%{
+    transform: scale(1.1) translate(0,-40%);
+  }
+  100%{
+    transform: scale(1) translate(0,-40%);
+  }
+}
+.ludoBox .fa-location-pin:nth-child(2){
+  transform: translate(10px,-40%);
+}
+.ludoBox .fa-location-pin:nth-child(3){
+  transform: translate(-10px,-40%);
+}
+.ludoBox .fa-location-pin:nth-child(4){
+  transform: translate(0px,-40%) scale(0.8);
+}
+.greenLudoBox{
+  background: var(--green);
+}
+.blueLudoBox{
+  background: var(--blue);
+}
+.yellowLudoBox{
+  background: var(--yellow);
+}
+.redLudoBox{
+  background: var(--red);
+}
+.board.active{
+  animation: animateBoard .8s linear
+  infinite;
+}
+@keyframes animateBoard {
+   0%{
+    filter: brightness(1.4);
+  }
+  50%{
+    filter: brightness(1);
+  }
+  100%{
+    filter: brightness(1.4);
+  }
 }
