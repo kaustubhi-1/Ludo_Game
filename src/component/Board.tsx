@@ -1,7 +1,9 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Dice from './Dice'
-import { PlayerColor, Token } from '../types/Token';
+import { BoardProps, TeamColor, Token } from '../../types/Token';
+import { useBoardRefs } from '@/hooks/useBoardRefs';
+
 
 const initialTokens: Token[] = [
   { id: "red-1", player: "red", position: "home" },
@@ -28,13 +30,48 @@ const initialTokens: Token[] = [
 const Board = () => {
   const [tokens, setTokens] = useState<Token[]>(initialTokens);
   const [diceValue, setDiceValue] = useState<number | null>(null);
+  const { blueBoardRef, greenBoardRef, redBoardRef, yellowBoardRef } = useBoardRefs();
 
-    const moveOutOfHome = (id: string, player: PlayerColor) => {
+  // const [playerTurns, setPlayerTurns] = useState<TeamColor[]>(["red", "green", "yellow", "blue"]);
+  // const [currentPlayerTurnIndex, setCurrentPlayerTurnIndex] = useState<number>(0);
+  // const [prevPlayerTurnIndex, setPrevPlayerTurnIndex] = useState<number | null>(null);
+  // const [currentPlayerTurnStatus, setCurrentPlayerTurnStatus] = useState<boolean>(true);
+  // const [teamHasBonus, setTeamHasBonus] = useState<boolean>(false);
+
+   const boardDetails = [
+    { boardColor: 'blue', board: blueBoardRef, homeEntry: 'y13', gameEntry: 'b1' },
+    { boardColor: 'green', board: greenBoardRef, homeEntry: 'r13', gameEntry: 'g1' },
+    { boardColor: 'red', board: redBoardRef, homeEntry: 'b13', gameEntry: 'r1' },
+    { boardColor: 'yellow', board: yellowBoardRef, homeEntry: 'g13', gameEntry: 'y1' }
+];
+
+  // const blueBoardRef = useRef<HTMLDivElement | null>(null);
+  // const greenBoardRef = useRef<HTMLDivElement | null>(null);
+  // const redBoardRef = useRef<HTMLDivElement | null>(null);
+  // const yellowBoardRef = useRef<HTMLDivElement | null>(null);
+  // const rollDiceButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  // useEffect(() => {
+  //   if (blueBoardRef.current) {
+  //     console.log("blueBoard DOM node:", blueBoardRef.current);
+  //   }
+  //   if (redBoardRef.current) {
+  //     console.log("redBoard DOM node:", redBoardRef.current);
+  //   }
+  //   if (greenBoardRef.current) {
+  //     console.log("greenBoard DOM node:", greenBoardRef.current);
+  //   }
+  //   if (yellowBoardRef.current) {
+  //     console.log("yellowBoard DOM node:", yellowBoardRef.current);
+  //   }
+  // }, []);
+
+    const moveOutOfHome = (id: string, player: TeamColor) => {
     if (diceValue !== 6) return; // can only move out on 6
 
-    const startPositions: Record<PlayerColor, string> = {
+    const startPositions: Record<TeamColor, string> = {
       red: "r1",
-      green: "gi",
+      green: "g1",
       yellow: "y1",
       blue: "b1",
     };
@@ -55,14 +92,17 @@ const Board = () => {
         <Dice onRoll={(value) => setDiceValue(value)}/>
           {diceValue && <div className="text-white">You rolled: {diceValue}</div>}
           <div id='ludoBoard'>
-            <div id='red-Board' className='board'>
+            <div id='red-Board' ref={redBoardRef} className='board'>
               <div>
-                {tokens.filter(t => t.player === 'red' && t.position === 'home').map(t => (
+                {tokens.filter(t => t.player === 'red').map(t => (
                   <span key={t.id}>
+                    {t.position === 'home' && (
                     <img 
                     onClick={() => moveOutOfHome(t.id, t.player)}
                     className="cursor-pointer"
-                   src="coinTomato.svg" alt="" />{/* ⚪️ or custom icon */}</span>
+                   src="coinTomato.svg" alt="" />
+                    )}
+                    {/* ⚪️ or custom icon */}</span>
                 ))}
               </div>
             </div>
@@ -86,7 +126,7 @@ const Board = () => {
               <div className="ludoBox greenLudoBox" id='gh5'></div>
               <div className="ludoBox" id='g5'></div>
             </div>
-            <div id='green-Board' className='board'>
+            <div id='green-Board' ref={greenBoardRef} className='board'>
               <div>
                 {tokens.filter(t => t.player === 'green').map(t => (
                   <span key={t.id}><img src="coinTomato.svg" alt="" />{/* ⚪️ or custom icon */}</span>
@@ -94,8 +134,17 @@ const Board = () => {
               </div>
             </div>
               <div id='red-path' className='horizontalPath'>
-              <div className="ludoBox" id='b13'></div>
-              <div className="ludoBox redLudoBox" id='r1'></div>
+              <div className="ludoBox" id='b13'></div>              
+              <div className="ludoBox redLudoBox" id='r1'>
+                {tokens.filter(t=>t.position === 'r1').map(t=>(
+                  <img
+                    key={t.id}
+                    className="token piece red-piece"
+                    src="coinTomato.svg"
+                    alt=""
+                  />
+                ))}
+              </div>
               <div className="ludoBox" id='r2'></div>
               <div className="ludoBox" id='r3'></div>
               <div className="ludoBox" id='r4'></div>
@@ -136,7 +185,7 @@ const Board = () => {
               <div className="ludoBox" id='g13'></div>
             
             </div>
-            <div id='blue-Board' className='board'>
+            <div id='blue-Board' ref={blueBoardRef} className='board'>
               <div>
                 {tokens.filter(t => t.player === 'blue').map(t => (
                   <span key={t.id}><img src="coinTomato.svg" alt="" />{/* ⚪️ or custom icon */}</span>
@@ -163,7 +212,7 @@ const Board = () => {
               <div className="ludoBox" id='y12'></div>
               <div className="ludoBox" id='y11'></div>
             </div>
-            <div id='yellow-Board' className='board'>
+            <div id='yellow-Board' ref={yellowBoardRef} className='board'>
               <div>
                {tokens.filter(t => t.player === 'yellow').map(t => (
                   <span key={t.id}><img src="coinTomato.svg" alt="" />{/* ⚪️ or custom icon */}</span>

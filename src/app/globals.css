@@ -128,61 +128,200 @@ body {
   justify-content: center;
 }
 .ludoBox .fa-location-pin{
-  position: absolute;
-  margin: 2px;
-  font-size: 2rem;
-  transform: translate(0,-40%);
-  -webkit-text-stroke-width: 2px;
-  z-index: 100;
-  animation: animateMyI .08s linear;
-  -webkit-text-stroke-color: rgb(255, 255, 255);
+    position: absolute;
+    margin: 2px;
+    font-size: 2rem;
+    transform: translate(0, -40%);
+    -webkit-text-stroke-width: 2px;
+    z-index: 100;
+    animation: animateMyI .08s linear;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
 }
-.ludobox .fa-star{
-  position: absolute;
-  color: #222;
-  opacity: .6;
+@keyframes animateMyI {
+    0%{
+        transform: scale(1.1) translate(0, -40%);
+    }
+    100%{
+        transform: scale(1) translate(0, -40%);
+    }
 }
-@keyframes aniimateMyI{
-  0%{
-    transform: scale(1.1) translate(0,-40%);
-  }
-  100%{
-    transform: scale(1) translate(0,-40%);
-  }
-}
+
 .ludoBox .fa-location-pin:nth-child(2){
-  transform: translate(10px,-40%);
+    transform: translate(10px, -40%);
 }
+
 .ludoBox .fa-location-pin:nth-child(3){
-  transform: translate(-10px,-40%);
+    transform: translate(-10px, -40%);
 }
+
 .ludoBox .fa-location-pin:nth-child(4){
-  transform: translate(0px,-40%) scale(0.8);
+    transform: translate(0px, -40%) scale(0.8);
 }
-.greenLudoBox{
-  background: var(--green);
+
+.redLudoBox {
+    background: var(--red);
 }
-.blueLudoBox{
-  background: var(--blue);
+
+.greenLudoBox {
+    background: var(--green);
 }
-.yellowLudoBox{
-  background: var(--yellow);
+
+.yellowLudoBox {
+    background: var(--yellow);
 }
-.redLudoBox{
-  background: var(--red);
+
+.blueLudoBox {
+    background: var(--blue);
 }
+
+
+.board .piece {
+    position: absolute;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -90%);
+    font-size: 2.3rem;
+    z-index: 100;
+}
+
 .board.active{
-  animation: animateBoard .8s linear
-  infinite;
+    animation: animateBoard .8s linear infinite;
 }
+
 @keyframes animateBoard {
-   0%{
-    filter: brightness(1.4);
-  }
-  50%{
-    filter: brightness(1);
-  }
-  100%{
-    filter: brightness(1.4);
-  }
+    0% {
+        filter:brightness(1.4);
+    }
+
+    50% {
+        filter: brightness(1);
+    }
+
+    100% {
+        filter: brightness(1.4);
+    }
+}
+
+
+.red-piece {
+    color: var(--red);
+}
+
+.yellow-piece {
+    color: var(--yellow);
+}
+
+.green-piece {
+    color: var(--green);
+}
+
+.blue-piece {
+    color: var(--blue);
+    z-index: 100;
+}
+@keyframes animateMyI {
+    0%{
+        transform: scale(1.1) translate(0, -40%);
+    }
+    100%{
+        transform: scale(1) translate(0, -40%);
+    }
+}
+
+.ludoBox .fa-location-pin:nth-child(2){
+    transform: translate(10px, -40%);
+}
+
+.ludoBox .fa-location-pin:nth-child(3){
+    transform: translate(-10px, -40%);
+}
+
+.ludoBox .fa-location-pin:nth-child(4){
+    transform: translate(0px, -40%) scale(0.8);
+}
+
+.redLudoBox {
+    background: var(--red);
+}
+
+.greenLudoBox {
+    background: var(--green);
+}
+
+.yellowLudoBox {
+    background: var(--yellow);
+}
+
+.blueLudoBox {
+    background: var(--blue);
+}
+
+
+.board .piece {
+    position: absolute;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -90%);
+    font-size: 2.3rem;
+    z-index: 100;
+}
+
+.board.active{
+    animation: animateBoard .8s linear infinite;
+}
+
+@keyframes animateBoard {
+    0% {
+        filter:brightness(1.4);
+    }
+
+    50% {
+        filter: brightness(1);
+    }
+
+    100% {
+        filter: brightness(1.4);
+    }
+}
+
+
+.red-piece {
+    color: var(--red);
+}
+
+.yellow-piece {
+    color: var(--yellow);
+}
+
+.green-piece {
+    color: var(--green);
+}
+
+.blue-piece {
+    color: var(--blue);
+    z-index: 100;
+}
+.piece {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+}
+
+.piece:nth-child(2) {
+  top: 3px;
+  left: 10px;
+}
+
+.piece:nth-child(3) {
+  top: 4px;
+  right: 10px;
+}
+
+.piece:nth-child(4) {
+  /* bottom: 2px; */
+  left: 10px;
 }
