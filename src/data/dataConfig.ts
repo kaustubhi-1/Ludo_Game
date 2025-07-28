@@ -31,3 +31,20 @@ export const safePaths = [
 
 export const playerPieces = [];
 
+const redPath = [...pathArray]; // no change
+const greenPath = [...pathArray.slice(pathArray.indexOf('g1')), ...pathArray.slice(0, pathArray.indexOf('g1'))];
+const yellowPath = [...pathArray.slice(pathArray.indexOf('y1')), ...pathArray.slice(0, pathArray.indexOf('y1'))];
+const bluePath = [...pathArray.slice(pathArray.indexOf('b1')), ...pathArray.slice(0, pathArray.indexOf('b1'))];
+
+// export const playerPaths = {
+//   red: redPath,
+//   green: greenPath,
+//   yellow: yellowPath,
+//   blue: bluePath,
+// };
+export const playerPaths = {
+  red: [...redPath, ...homePathEntries.red],
+  green: [...greenPath, ...homePathEntries.green],
+  yellow: [...yellowPath, ...homePathEntries.yellow],
+  blue: [...bluePath, ...homePathEntries.blue],
+};
