@@ -6,20 +6,7 @@ export interface Token {
   player: TeamColor;
 }
 
-//here
-
-
-
 export type HomePathEntries = Record<TeamColor, string[]>;
-
-
-// export interface Piece {
-//   id: string;
-//   team: TeamColor;
-//   position: string; // e.g. 'r1', 'b9', 'bh2'
-//   isHome: boolean;
-//   isSafe: boolean;
-// }
 
 export interface Piece {
   id: string;
@@ -44,3 +31,7 @@ export interface PlayerTurn {
 export type BoardProps = {
   numPvP: number;
 };
+export interface DiceProps {
+  onRoll: (value: number) => void;
+}
+

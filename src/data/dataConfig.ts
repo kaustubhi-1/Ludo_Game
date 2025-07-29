@@ -1,4 +1,4 @@
-import { HomePathEntries } from "../../types/Token";
+import { HomePathEntries, Token } from "../../types/Token";
 
 export const pathArray = [
     'r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9', 'r10', 'r11', 'r12', 'r13',
@@ -36,15 +36,32 @@ const greenPath = [...pathArray.slice(pathArray.indexOf('g1')), ...pathArray.sli
 const yellowPath = [...pathArray.slice(pathArray.indexOf('y1')), ...pathArray.slice(0, pathArray.indexOf('y1'))];
 const bluePath = [...pathArray.slice(pathArray.indexOf('b1')), ...pathArray.slice(0, pathArray.indexOf('b1'))];
 
-// export const playerPaths = {
-//   red: redPath,
-//   green: greenPath,
-//   yellow: yellowPath,
-//   blue: bluePath,
-// };
+
 export const playerPaths = {
   red: [...redPath, ...homePathEntries.red],
   green: [...greenPath, ...homePathEntries.green],
   yellow: [...yellowPath, ...homePathEntries.yellow],
   blue: [...bluePath, ...homePathEntries.blue],
 };
+
+export const initialTokens: Token[] = [
+  { id: "red-1", player: "red", position: "home" },
+  { id: "red-2", player: "red", position: "home" },
+  { id: "red-3", player: "red", position: "home" },
+  { id: "red-4", player: "red", position: "home" },
+
+  { id: "green-1", player: "green", position: "home" },
+  { id: "green-2", player: "green", position: "home" },
+  { id: "green-3", player: "green", position: "home" },
+  { id: "green-4", player: "green", position: "home" },
+
+  { id: "yellow-1", player: "yellow", position: "home" },
+  { id: "yellow-2", player: "yellow", position: "home" },
+  { id: "yellow-3", player: "yellow", position: "home" },
+  { id: "yellow-4", player: "yellow", position: "home" },
+
+  { id: "blue-1", player: "blue", position: "home" },
+  { id: "blue-2", player: "blue", position: "home" },
+  { id: "blue-3", player: "blue", position: "home" },
+  { id: "blue-4", player: "blue", position: "home" },
+];

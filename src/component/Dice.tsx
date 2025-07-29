@@ -1,14 +1,13 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import { DiceProps } from "../../types/Token";
 
-interface DiceProps {
-  onRoll: (value: number) => void;
-}
-
-const Dice: React.FC<DiceProps> = ({ onRoll }) => {
+export default function Dice  ({ onRoll }:DiceProps)  {
+  const [result, setResult] = useState<number | null>(null);
   const rollDice = () => {
-    const result = Math.floor(Math.random() * 6) + 1;
-    onRoll(result);
+    const value = Math.floor(Math.random() * 6) + 1;
+    setResult(value)
+    onRoll(value);
   };
 
   return (
@@ -17,10 +16,10 @@ const Dice: React.FC<DiceProps> = ({ onRoll }) => {
         onClick={rollDice}
         className="bg-white text-black px-6 py-2 rounded-md shadow-md hover:bg-gray-100"
       >
-        🎲 Roll Dice
+        🎲 Roll Dice {result && <div className="text-black">You rolled: {result}</div>}
       </button>
     </div>
   );
 };
 
-export default Dice;
+

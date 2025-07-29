@@ -12,3 +12,9 @@ export const boardSquares = [
   "s5",
   "end",
 ];
+export const tokenImages: Record<string, string> = {
+  red: "coinTomato.svg",
+  green: "coinPalegreen.svg",
+  yellow: "coinYellow.svg",
+  blue: "coinBlue.svg",
+};
