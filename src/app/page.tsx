@@ -1,7 +1,5 @@
 'use client'
-import Board from "@/component/Board";
 import Boards from "@/component/Boards";
-import Dice from "@/component/Dice";
 import Dices from "@/component/Dices";
 import { useState } from "react";
 
