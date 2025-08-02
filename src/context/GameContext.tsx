@@ -11,19 +11,26 @@ import React, {
 } from "react";
 
 type Player = "red" | "blue" | "green" | "yellow";
-
+type SizeType = {
+  dice: number;
+  board: string;
+};
 type GameContextType = {
   rollDice: () => void;
-  diceNumberValue: React.RefObject<number>; // OR MutableRefObject<number>
+  diceNumberValue: React.RefObject<number>; 
   currentPlayer: TeamColor;
-  setCurrentPlayer: (player: Player) => void;
+  setCurrentPlayer: (player: TeamColor) => void;
   nextTurn: () => void;
-  playerPositions: Record<Player, number[]>;
+  playerPositions: Record<TeamColor, number[]>;
   setPlayerPositions: React.Dispatch<
-    React.SetStateAction<Record<Player, number[]>>
+    React.SetStateAction<Record<TeamColor, number[]>>
   >;
+  size: SizeType;
+  setSize: React.Dispatch<React.SetStateAction<SizeType>>;
+  diceDisabled: boolean;
+  setDiceDisabled:React.Dispatch<React.SetStateAction<boolean>>;
   win: Player[];
-  setWin: React.Dispatch<React.SetStateAction<Player[]>>;
+  setWin: React.Dispatch<React.SetStateAction<TeamColor[]>>;
 };
 
 export const GameContext = createContext<GameContextType | undefined>(
@@ -45,7 +52,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     dice: 1.2,
     board: "",
   });
-  const [win, setWin] = useState<Player[]>([]);
+  const [win, setWin] = useState<TeamColor[]>([]);
 
   const rollDice = () => {
     const randomNumber = Math.floor(Math.random() * 6) + 1;
@@ -72,7 +79,11 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         currentPlayer: currentPlayer as TeamColor,
         setCurrentPlayer,
         nextTurn,
+        diceDisabled, 
+        setDiceDisabled,
         playerPositions,
+        size, 
+        setSize,
         setPlayerPositions,
         win,
         setWin,

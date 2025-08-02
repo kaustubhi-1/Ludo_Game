@@ -15,7 +15,7 @@ const DiceRolled = (
   nextTurn: () => void,
   currentPlayer: TeamColor,
   playerPositions: PlayerPositions,
-//   setDiceDisabled: (value: boolean) => void
+  setDiceDisabled: (value: boolean) => void
 ) => {
   const diceNumber = diceNumberValue.current;
 
@@ -28,7 +28,7 @@ const DiceRolled = (
     setTimeout(() => {
       diceNumberValue.current = 0;
       nextTurn();
-    //   setDiceDisabled(false);
+      setDiceDisabled(false);
     }, 1500);
   }
 
@@ -38,7 +38,7 @@ const DiceRolled = (
     currentPlayer: TeamColor,
     diceNumberValue: React.MutableRefObject<number>,
     nextTurn: () => void,
-    // setDiceDisabled: (value: boolean) => void
+    setDiceDisabled: (value: boolean) => void
   ) => {
     if (diceNumber !== 0) {
       const allPlayers: TeamColor[] = ["red", "yellow", "green", "blue"];
@@ -67,15 +67,14 @@ const DiceRolled = (
         setTimeout(() => {
           diceNumberValue.current = 0;
           nextTurn();
-        //   setDiceDisabled(false);
+          setDiceDisabled(false);
         }, 1500);
       }
     }
   };
 
-  checkAllPossibilities(diceNumber, currentPlayer, diceNumberValue, nextTurn);
+  checkAllPossibilities(diceNumber, currentPlayer, diceNumberValue, nextTurn, setDiceDisabled );
 
-  // check if currentPlayer has all tokens in final winning position
   const winningPositions: Record<TeamColor, number> = {
     red: 106,
     blue: 406,

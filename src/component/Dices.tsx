@@ -5,7 +5,7 @@ import DiceRolled from '@/utils/DiceRolled';
 
 const Dices = () => {
 
-  const { diceNumberValue, rollDice, currentPlayer, playerPositions, nextTurn } = useGame();
+  const { diceNumberValue, rollDice,diceDisabled, setDiceDisabled, currentPlayer, playerPositions, nextTurn } = useGame();
   const [shadow, setShadow] = useState("");
   const diceNumber = diceNumberValue.current;
 
@@ -19,8 +19,9 @@ const Dices = () => {
   const [diceStyle, setDiceStyle] = useState('hidden');
 
   const handleClick = () => {
-
+    if (diceDisabled) return;
     const audio = new Audio("/assests_roll.mp3");
+    audio.play()
 
     setTimeout(() => {
       setDiceStyle('visible')
@@ -52,21 +53,21 @@ const Dices = () => {
 
   useEffect(() => {
 
-    DiceRolled(diceNumberValue, nextTurn, currentPlayer, playerPositions)
+    DiceRolled(diceNumberValue, nextTurn, currentPlayer, playerPositions, setDiceDisabled)
 
     if (diceNumber === 0) return;
     
     if ((diceNumber === 6 || playerPositions[currentPlayer].some(value => value !== 0))) {
-    //   setDiceDisabled(true);
+      setDiceDisabled(true);
     } else {
       setTimeout(() => {
         diceNumberValue.current = 0;
         nextTurn();
-        // setDiceDisabled(false);
+        setDiceDisabled(false);
       }, 1500);
     }
 
-  }, [diceNumber, playerPositions, diceNumberValue, nextTurn]);
+  }, [diceNumber, playerPositions, diceNumberValue, nextTurn, setDiceDisabled]);
 
   return (
     <div id="dice" >

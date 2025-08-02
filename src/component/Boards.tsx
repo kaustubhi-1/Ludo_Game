@@ -9,16 +9,19 @@ import Piece from "./Piece";
 const Boards = () => {
   const { playerPositions, currentPlayer } = useGame();
   const [layout, setLayout] = useState(trackLayout);
+  // console.log(playerPositions)
+  // console.log(currentPlayer)
 
   useEffect(() => {
     
     const updatedLayout = { ...trackLayout };
-
+  // console.log(updatedLayout)
     
     Object.values(updatedLayout).forEach((value) => {
       value.Piece = [];
     });
 
+    // console.log(Object.values(updatedLayout))
     Object.entries(playerPositions).forEach(([color, positions]) => {
       positions.forEach((position, index) => {
         if (
@@ -61,6 +64,7 @@ const Boards = () => {
             key={key}
             className={`${value.type} track-${key} ${childClassName}`}
           >
+            
             {/* {key} */}
             {value.Piece.map((piece, i) => (
               <Piece key={i} color={piece.split("-")[0] as any} id={piece} />
