@@ -1,5 +1,6 @@
 import Rules from "./Rules";
 import { PlayerPositions, TeamColor } from "@/types/Token";
+import trackLayout from "./TrackLayout";
 
 type MovingFn = (
   currentPosition: number,
@@ -54,6 +55,13 @@ const Moving: MovingFn = (
           currentPosition + i > totalPositions && currentPosition < 100
             ? winTrackPosition + ((currentPosition + i) % totalPositions)
             : currentPosition + i;
+
+    const audio = new Audio("/moving.mp3");
+    audio.volume = 0.5;
+    audio.currentTime = 0;
+    audio.play().catch((err) => {
+      console.warn("Audio step failed:", err);
+    });
         changingPosition(
           color,
           index,
@@ -84,6 +92,17 @@ const changingPosition = (
   setPlayerPositions((prev) => {
     const newPlayerPositions = { ...prev };
     newPlayerPositions[color][index] = newPosition;
+     const tile = trackLayout[newPosition];
+    //  console.log(tile)
+    //  console.log(tile.type.includes("safe"))
+    if (tile && tile.type.includes("safe")) {
+      const safeAudio = new Audio("/stop.mp3");
+      safeAudio.volume = 0.5;
+      safeAudio.play().catch((err) => {
+        console.warn("Safe spot audio failed:", err);
+      });
+    }
+
     if (
       playerPositions[currentPlayer].every(
         (value) =>

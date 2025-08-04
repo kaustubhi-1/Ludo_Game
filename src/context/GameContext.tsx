@@ -61,11 +61,11 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 
   const nextTurn = () => {
     if (currentPlayer === "red") {
-      setCurrentPlayer("blue");
-    } else if (currentPlayer === "blue") {
+      setCurrentPlayer("yellow");
+    } else if (currentPlayer === "yellow") {
       setCurrentPlayer("green");
     } else if (currentPlayer === "green") {
-      setCurrentPlayer("yellow");
+      setCurrentPlayer("blue");
     } else {
       setCurrentPlayer("red");
     }

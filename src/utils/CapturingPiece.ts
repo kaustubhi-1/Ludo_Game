@@ -22,7 +22,7 @@ const CapturingPiece = (
     if (pieceColor !== color) {
       setPlayerPositions((prev) => {
         const newPlayerPositions = { ...prev };
-        newPlayerPositions[pieceColor][pieceIndex] = 0;
+        newPlayerPositions[pieceColor][pieceIndex] = 0;//yha se wapas bhej rhe ghar marne ke bad
         return newPlayerPositions;
       });
       pieceOnTrack.pop();

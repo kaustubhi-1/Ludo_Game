@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import trackLayout from "@/utils/TrackLayout";
 import { useGame } from "../context/GameContext";
+import Square from './Square';
 import Home from "./Home";
 import Piece from "./Piece";
 // import '../styles/Board.css';
@@ -55,6 +56,7 @@ const Boards = () => {
           })}
         </Home>
       ))}
+      <Square />
       {Object.entries(layout).map(([key, value]) => {
         const numberOfPieces = value.Piece.length;
         const childClassName = numberOfPieces > 1 ? "multiple-pieces" : "";
