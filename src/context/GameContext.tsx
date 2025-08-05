@@ -1,4 +1,4 @@
-// src/context/GameContext.tsx
+
 "use client";
 
 import { TeamColor } from "@/types/Token";
@@ -8,12 +8,13 @@ import React, {
   useState,
   ReactNode,
   useRef,
+  useEffect,
 } from "react";
 
 type Player = "red" | "blue" | "green" | "yellow";
 type SizeType = {
   dice: number;
-  board: string;
+  board: number;
 };
 type GameContextType = {
   rollDice: () => void;
@@ -50,9 +51,37 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   });
   const [size, setSize] = useState({
     dice: 1.2,
-    board: "",
+    board: 0.8,
   });
   const [win, setWin] = useState<TeamColor[]>([]);
+
+    useEffect(() => {
+    function handleResize() {
+      const screenWidth = window.innerWidth;
+      let newBoardSize = 0.8;
+
+      if (screenWidth < 1025 && screenWidth >= 768) {
+        newBoardSize = 1;
+        defaultBoardSize.current=0.5
+      } else if (screenWidth < 768 && screenWidth >= 550) {
+        newBoardSize = 0.5;
+        defaultBoardSize.current=0.5
+      } else if (screenWidth < 768) {
+        newBoardSize = 0.8;
+        defaultBoardSize.current=0.8
+      }
+
+      setSize(prevSize => ({ ...prevSize, board: newBoardSize }));
+    }
+
+    handleResize(); // Initial update
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const rollDice = () => {
     const randomNumber = Math.floor(Math.random() * 6) + 1;

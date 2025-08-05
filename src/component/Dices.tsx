@@ -45,9 +45,9 @@ const Dices = () => {
         audio.currentTime = 0;
       }
     
-    }, 1000);
+    }, 800);
 
-    setTimeout(() => { setDiceStyle('hidden') }, 800);
+    setTimeout(() => { setDiceStyle('hidden') }, 900);
 
   };
 

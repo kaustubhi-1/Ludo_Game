@@ -2,13 +2,13 @@ import React from "react";
 import { TeamColor } from "../types/Token";
 
 type PlayerPositions = Record<TeamColor, number[]>;
-type DiceRolledProps = {
-  diceNumberValue: React.MutableRefObject<number>;
-  nextTurn: () => void;
-  currentPlayer: TeamColor;
-  playerPositions: PlayerPositions;
-  setDiceDisabled: (value: boolean) => void;
-};
+// type DiceRolledProps = {
+//   diceNumberValue: React.MutableRefObject<number>;
+//   nextTurn: () => void;
+//   currentPlayer: TeamColor;
+//   playerPositions: PlayerPositions;
+//   setDiceDisabled: (value: boolean) => void;
+// };
 
 const DiceRolled = (
   diceNumberValue: React.MutableRefObject<number>,
@@ -31,7 +31,6 @@ const DiceRolled = (
     }, 1500);
   }
 
-  // Check if no valid moves are possible → skip turn
   const checkAllPossibilities = (
     diceNumber: number,
     currentPlayer: TeamColor,

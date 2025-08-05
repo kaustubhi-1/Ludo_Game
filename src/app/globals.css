@@ -714,16 +714,23 @@ code {
     grid-template-columns: 70% 30%;
     height: 100vh;
     width: 100vw;
-    padding: 25px;
+    /* padding: 25px; */
+    padding-bottom: 0px;
+    margin-bottom: 20px;
+    padding-top: 0px;
     text-align: center;
   }
 
-#board-container{
-  /* overflow: hidden; */
+#board-container {
+  width: 100vw; /* Take full viewport width */
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: -13px;
+  padding: 0;
 }
+
 
 #second-container {
   display: flex;
@@ -948,3 +955,31 @@ font-size: 52px;
     background: #1101FF;
     background: linear-gradient(315deg, #1101FF, #011D40);
   }
+/* @media screen and (min-width: 850px) {
+  .App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: auto;
+    padding: 10px;
+  }
+}
+  */
+  /* @media screen and (max-width: 850px) {
+  #board-container {
+
+    max-height: 64vh; 
+  }
+  #second-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 182px; 
+    margin-top: 0;
+    padding: 0;
+  }
+  
+} */

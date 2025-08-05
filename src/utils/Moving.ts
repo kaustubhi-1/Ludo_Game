@@ -42,6 +42,15 @@ const Moving: MovingFn = (
       win,
       setWin
     );
+    const tile = trackLayout[newPositionInRange];
+    if (tile && tile.type.includes("safe")) {
+      const safeAudio = new Audio("/stop.mp3");
+      safeAudio.volume = 0.5;
+      safeAudio.play().catch((err) => {
+        console.warn("Safe spot audio failed:", err);
+      });
+    }
+
   } else {
     const positionsToMove =
       newPositionInRange -
@@ -72,6 +81,16 @@ const Moving: MovingFn = (
           win,
           setWin
         );
+        if(i===positionsToMove){
+          const tile = trackLayout[newPosition]
+          if (tile && tile.type.includes("safe")) {
+            const safeAudio = new Audio("/stop.mp3");
+            safeAudio.volume = 0.5;
+            safeAudio.play().catch((err) => {
+              console.warn("Safe spot audio failed:", err);
+            });
+        }
+      }
       }, 400 * (i - 1));
     }
   }
@@ -92,16 +111,6 @@ const changingPosition = (
   setPlayerPositions((prev) => {
     const newPlayerPositions = { ...prev };
     newPlayerPositions[color][index] = newPosition;
-     const tile = trackLayout[newPosition];
-    //  console.log(tile)
-    //  console.log(tile.type.includes("safe"))
-    if (tile && tile.type.includes("safe")) {
-      const safeAudio = new Audio("/stop.mp3");
-      safeAudio.volume = 0.5;
-      safeAudio.play().catch((err) => {
-        console.warn("Safe spot audio failed:", err);
-      });
-    }
 
     if (
       playerPositions[currentPlayer].every(

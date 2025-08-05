@@ -12,9 +12,9 @@ export default function Home() {
 <>
       <div className="App">
       {/* <GameOver /> */}
-      <div className='mobile-current-player'>
+      {/* <div className='mobile-current-player'> */}
       {/* <PlayerChance /> */}
-      </div>
+      {/* </div> */}
         <div id="board-container" style={{transform: `rotate(${boardRotate}deg)`}}>
           <Boards />
         </div>

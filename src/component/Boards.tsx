@@ -8,7 +8,7 @@ import Piece from "./Piece";
 // import '../styles/Board.css';
 
 const Boards = () => {
-  const { playerPositions, currentPlayer } = useGame();
+  const { playerPositions, currentPlayer,size } = useGame();
   const [layout, setLayout] = useState(trackLayout);
   // console.log(playerPositions)
   // console.log(currentPlayer)
@@ -42,8 +42,7 @@ const Boards = () => {
 
   return (
     // <div id="board" style={{transform: `scale(${size.board})`}}>
-    <div id="board">
-      {/* Render Home components for each color */}
+    <div id="board" >
       {(["red", "green", "yellow", "blue"] as const).map((color) => (
         <Home key={color} color={color}>
           {playerPositions[color].map((position, index) => {
