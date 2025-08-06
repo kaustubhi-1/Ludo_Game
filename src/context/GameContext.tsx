@@ -1,4 +1,3 @@
-
 "use client";
 
 import { TeamColor } from "@/types/Token";
@@ -18,7 +17,7 @@ type SizeType = {
 };
 type GameContextType = {
   rollDice: () => void;
-  diceNumberValue: React.RefObject<number>; 
+  diceNumberValue: React.RefObject<number>;
   currentPlayer: TeamColor;
   setCurrentPlayer: (player: TeamColor) => void;
   nextTurn: () => void;
@@ -29,7 +28,7 @@ type GameContextType = {
   size: SizeType;
   setSize: React.Dispatch<React.SetStateAction<SizeType>>;
   diceDisabled: boolean;
-  setDiceDisabled:React.Dispatch<React.SetStateAction<boolean>>;
+  setDiceDisabled: React.Dispatch<React.SetStateAction<boolean>>;
   win: Player[];
   setWin: React.Dispatch<React.SetStateAction<TeamColor[]>>;
 };
@@ -55,31 +54,45 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   });
   const [win, setWin] = useState<TeamColor[]>([]);
 
-    useEffect(() => {
+  useEffect(() => {
     function handleResize() {
       const screenWidth = window.innerWidth;
       let newBoardSize = 0.8;
 
-      if (screenWidth < 1025 && screenWidth >= 768) {
-        newBoardSize = 1;
-        defaultBoardSize.current=0.5
-      } else if (screenWidth < 768 && screenWidth >= 550) {
-        newBoardSize = 0.5;
-        defaultBoardSize.current=0.5
-      } else if (screenWidth < 768) {
+      // if (screenWidth < 1025 && screenWidth >= 768) {
+      //   newBoardSize = 1;
+      //   defaultBoardSize.current=0.5
+      // } else if (screenWidth < 768 && screenWidth >= 550) {
+      //   newBoardSize = 0.5;
+      //   defaultBoardSize.current=0.5
+      // } else if (screenWidth < 768) {
+      //   newBoardSize = 0.8;
+      //   defaultBoardSize.current=0.8
+      // }
+
+      if (screenWidth >= 1025) {
         newBoardSize = 0.8;
-        defaultBoardSize.current=0.8
+        defaultBoardSize.current = 0.8;
+      } else if (screenWidth >= 768) {
+        newBoardSize = 1;
+        defaultBoardSize.current = 0.5;
+      } else if (screenWidth >= 550) {
+        newBoardSize = 0.5;
+        defaultBoardSize.current = 0.5;
+      } else {
+        newBoardSize = 1;
+        defaultBoardSize.current = 1;
       }
 
-      setSize(prevSize => ({ ...prevSize, board: newBoardSize }));
+      setSize((prevSize) => ({ ...prevSize, board: newBoardSize }));
     }
 
-    handleResize(); // Initial update
+    handleResize();
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -108,10 +121,10 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         currentPlayer: currentPlayer as TeamColor,
         setCurrentPlayer,
         nextTurn,
-        diceDisabled, 
+        diceDisabled,
         setDiceDisabled,
         playerPositions,
-        size, 
+        size,
         setSize,
         setPlayerPositions,
         win,

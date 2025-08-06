@@ -5,6 +5,7 @@ import { useGame } from "../context/GameContext";
 import Square from './Square';
 import Home from "./Home";
 import Piece from "./Piece";
+import User from "./User";
 // import '../styles/Board.css';
 
 const Boards = () => {
@@ -41,8 +42,11 @@ const Boards = () => {
   }, [playerPositions, currentPlayer]);
 
   return (
-    // <div id="board" style={{transform: `scale(${size.board})`}}>
+    <>
+     {/* <User color={'red'} /> */}
+     {/* <div id="board" style={{transform: `scale(${size.board})`}}> */}
     <div id="board" >
+     
       {(["red", "green", "yellow", "blue"] as const).map((color) => (
         <Home key={color} color={color}>
           {playerPositions[color].map((position, index) => {
@@ -74,6 +78,8 @@ const Boards = () => {
         );
       })}
     </div>
+    </>
+    
   );
 };
 
