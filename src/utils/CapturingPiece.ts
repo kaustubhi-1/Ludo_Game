@@ -1,19 +1,29 @@
 import { PlayerPositions, TeamColor } from "@/types/Token";
 import TrackLayout from "./TrackLayout";
 
+const forbiddenCapturePositions = {
+  red: 52,
+  yellow: 13,
+  green: 26,
+  blue: 39,
+};
+
 const CapturingPiece = (
   newPosition: number,
   color: TeamColor,
   setPlayerPositions: React.Dispatch<React.SetStateAction<PlayerPositions>>
 ) => {
   if (newPosition > 100) return;
-
-  if (newPosition > 52) {
-    newPosition -= 52;
+  if (newPosition === forbiddenCapturePositions[color]) {
+    return false;
   }
-
-  const trackType = TrackLayout[newPosition].type;
-  const pieceOnTrack = TrackLayout[newPosition].Piece;
+let adjustedPosition = newPosition;
+  if (newPosition > 52) {
+    adjustedPosition = newPosition - 52;
+  }
+console.log(newPosition)
+  const trackType = TrackLayout[adjustedPosition]?.type;
+  const pieceOnTrack = TrackLayout[adjustedPosition]?.Piece;
 
   if (!trackType.includes("safe") && pieceOnTrack.length > 0) {
     const [pieceColorstr, pieceIndexstr] = pieceOnTrack[0].split("-");

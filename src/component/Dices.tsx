@@ -8,6 +8,7 @@ const Dices = () => {
   const { diceNumberValue, rollDice,diceDisabled, setDiceDisabled, currentPlayer, playerPositions, nextTurn } = useGame();
   const [shadow, setShadow] = useState("");
   const diceNumber = diceNumberValue.current;
+  const [manualInput,setManualInput] = useState('')
 
 //   const audio = new Audio(rollSound);
 
@@ -69,7 +70,34 @@ const Dices = () => {
 
   }, [diceNumber, playerPositions, diceNumberValue, nextTurn, setDiceDisabled]);
 
+  // const handleMaualInput = (e:any) => {
+  //   const val = e.target.value
+  //   if(val === '' || (/^[1-6]$/.test(val))) setManualInput(val)
+  // }
+
+  // const handleManualSubmit = (e:any) => {
+  //   e.preventDefault()
+  //   if(manualInput === '') return
+  //   const manualNumber = parseInt(manualInput,10)
+  //   if(manualNumber >= 1 && manualNumber <=6){
+  //     diceNumberValue.current = manualNumber
+  //     setRotated(true)
+  //     setDiceStyle('visible')
+  //     setValues([1,2,3,4,5,6])
+  //     setValues(prevVal => {
+  //       const otherValues = [...prevVal];
+  //     otherValues[manualNumber - 1] = 2;
+  //     return otherValues;
+  //     })
+  //     setTimeout(() => {
+  //     setRotated(false);
+  //     setDiceStyle('hidden');
+  //   }, 800);
+  //   }
+
+  // }
   return (
+    <>
     <div id="dice" >
       <div
         className={`dice ${rotated ? 'rotate' : ''}`}
@@ -136,6 +164,16 @@ const Dices = () => {
         </div>
       </div>
     </div>
+    {/* <form onSubmit={handleManualSubmit}>
+      <input 
+      type="text"
+      value={manualInput}
+      onChange={handleMaualInput}
+      style={{border:'1px solid black'}}
+       />
+      <button type="submit">Submit</button>
+    </form> */}
+    </>
   );
 };
 
