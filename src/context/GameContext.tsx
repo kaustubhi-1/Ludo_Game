@@ -142,3 +142,18 @@ export const useGame = () => {
   }
   return context;
 };
+
+ export function colorGenerator(color: TeamColor): string {
+    switch (color) {
+      case "red":
+        return "#FF0800";
+      case "blue":
+        return "#0000FF";
+      case "green":
+        return "#4CBB17";
+      case "yellow":
+        return "#FFC40C";
+      default:
+        return "white";
+    }
+  }

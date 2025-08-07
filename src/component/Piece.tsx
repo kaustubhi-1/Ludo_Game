@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Move from "../utils/Move";
-import { useGame } from "../context/GameContext";
+import { colorGenerator, useGame } from "../context/GameContext";
 // import '../styles/Piece.css'
 import { TeamColor } from "@/types/Token";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,20 +30,6 @@ const Piece: React.FC<PieceProps> = ({ color, id }) => {
     return () => clearTimeout(timer);
   }, [playerPositions[color][parseInt(id.split("-")[1])]]);
 
-  function colorGenerator(color: TeamColor): string {
-    switch (color) {
-      case "red":
-        return "#FF0800";
-      case "blue":
-        return "#0000FF";
-      case "green":
-        return "#4CBB17";
-      case "yellow":
-        return "#FFC40C";
-      default:
-        return "white";
-    }
-  }
 
   const make_a_move = (e: React.MouseEvent<SVGSVGElement>) => {
 

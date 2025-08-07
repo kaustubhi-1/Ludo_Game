@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 // import '../styles/Home.css'; 
-import { useGame } from '../context/GameContext';
+import { colorGenerator, useGame } from '../context/GameContext';
 import { TeamColor } from '../types/Token';
 
 type HomeProps = {
@@ -10,15 +10,6 @@ type HomeProps = {
 const  Home = ({ color, children }: HomeProps) =>  {
   const { currentPlayer } = useGame();
 
-  function colorGenerator(color:TeamColor) {
-    switch (color) {
-      case 'red': return '#B22222';
-      case 'blue': return '#1034A6';
-      case 'green': return '#228B22';
-      case 'yellow': return '#F4C431';
-      default: return 'white';
-    }
-  }
 
   function chanceColor(currentPlayer:string, color:TeamColor) {
     if (currentPlayer === color) {
@@ -27,11 +18,16 @@ const  Home = ({ color, children }: HomeProps) =>  {
       return 'home-inner';
     }
   }
-
+const placeholders = [0, 1, 2, 3];
   return (
     <div id={`${color}-home`} className='home' style={{ backgroundColor: colorGenerator(color) }}>
       <div className={chanceColor(currentPlayer, color)}>
-        {children}
+        {placeholders.map((i)=>{
+          return <div key={i} className='home-spot' style={{ backgroundColor: colorGenerator(color) }}>
+              {React.Children.toArray(children)[i]}
+          </div>
+        })}
+        {/* {children} */}
       </div>
     </div>
   );
