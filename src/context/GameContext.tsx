@@ -71,8 +71,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       // }
 
       if (screenWidth >= 1025) {
-        newBoardSize = 0.8;
-        defaultBoardSize.current = 0.8;
+        newBoardSize = 1;
+        defaultBoardSize.current = 1;
       } else if (screenWidth >= 768) {
         newBoardSize = 1;
         defaultBoardSize.current = 0.5;

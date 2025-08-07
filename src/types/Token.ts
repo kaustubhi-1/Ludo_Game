@@ -38,6 +38,7 @@ export type BoardProps = {
 };
 export interface DiceProps {
   onRoll: (value: number) => void;
+
 }
 
 export type GameContextType = {
@@ -54,6 +55,7 @@ export interface DiceProps {
   currentPlayer: TeamColor;
   playerPositions: Record<TeamColor, number[]>;
   setDiceDisabled: (val: boolean) => void;
+  color:TeamColor
 }
 export interface Track {
   type: string;

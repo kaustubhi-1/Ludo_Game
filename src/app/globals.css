@@ -53,13 +53,19 @@ p {
 
 
 /* Dice start */
-#dice{
+#diced{
   width: 50px;
   height: 50px;
   margin: 10px;
   perspective: 1000px;
   cursor: pointer;
+  display: flex;
 }
+.disabled-dice {
+  pointer-events: none;
+  /* opacity: 0.4; */
+}
+
 
 .dice {
   width: 50px;
@@ -710,7 +716,8 @@ p {
     grid-gap: 20px;
     display: grid;
     gap: 20px;
-    grid-template-columns: 70% 30%;
+    /* grid-template-columns: 70% 30%; */
+    grid-template-rows: 20% 60% 20%;
     height: 100vh;
     width: 100vw;
     /* padding: 25px; */
@@ -742,8 +749,8 @@ p {
 .dice-container {
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  justify-content: space-between;
 }
 
 .App-link {
@@ -992,3 +999,4 @@ font-size: 52px;
   align-items: center;
   justify-content: center;
 }
+
